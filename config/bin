@@ -1,0 +1,5 @@
+. ~/bashlight/bashlight
+
+EDITOR=vim
+VISUAL=$EDITOR
+export EDITOR VISUAL
