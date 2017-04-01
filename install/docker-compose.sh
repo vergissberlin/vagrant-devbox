@@ -1,3 +1,14 @@
+#!/bin/bash
+
+# vagrant-devbox
+#
+# LICENSE:    MIT
+#
+# @project    vagrant-devbox
+# @package    installation
+# @author     André Lademann <vergissberlin@googlemail.com>
+# @license    http://opensource.org/licenses/MIT
+
 apt-get install -y \
   apt-transport-https \
   ca-certificates \
