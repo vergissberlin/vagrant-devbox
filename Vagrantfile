@@ -95,13 +95,9 @@ Vagrant.configure("2") do |config|
   #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
   # end
 
-  config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
-  config.vm.provision "file", source: "~/.gitignoreglobal", destination: ".gitignoreglobal"
   config.vm.provision "file", source: "./config/.bashrc", destination: ".bashrc"
   config.vm.provision "file", source: "./config/.bash_aliases", destination: ".bash_aliases"
   config.vm.provision "file", source: "./config/.vimrc", destination: ".vimrc"
-  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: ".ssh/id_rsa"
-  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: ".ssh/id_rsa.pub"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
