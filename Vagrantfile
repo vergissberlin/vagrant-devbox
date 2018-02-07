@@ -107,14 +107,17 @@ Vagrant.configure("2") do |config|
     apt-get install -y \
       curl \
       git \
+      language-pack-en \
+      make \
       mc \
+      python-pip \
       vim \
       wget
 
       update-alternatives --set editor /usr/bin/vim.basic
 
       . /vagrant/install/bashlight.sh
-      # . /vagrant/install/composer.sh
+      . /vagrant/install/composer.sh
       . /vagrant/install/docker-compose.sh
       . /vagrant/config/structure.sh
       chown -R vagrant:vagrant /home/vagrant/
@@ -122,7 +125,7 @@ Vagrant.configure("2") do |config|
 
   # Always use Vagrant's default insecure key
   config.ssh.forward_agent    = true
-  config.ssh.insert_key       = false
+  config.ssh.insert_key       = true
 
   config.vm.provision :docker
   config.vm.provision :docker_compose
