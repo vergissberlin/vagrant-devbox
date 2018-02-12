@@ -109,6 +109,7 @@ Vagrant.configure("2") do |config|
       git \
       language-pack-en \
       make \
+      mariadb-client \
       mc \
       python-pip \
       vim \
