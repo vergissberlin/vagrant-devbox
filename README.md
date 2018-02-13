@@ -4,7 +4,7 @@
 
 1. Git
 2. Ruby
-3. Virtualbox (https://www.virtualbox.org/)
+3. VirtualBox (https://www.virtualbox.org/)
 4. Vagrant (https://www.vagrantup.com/)
 
 ## Usage
