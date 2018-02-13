@@ -43,8 +43,7 @@ Vagrant.configure("2") do |config|
   # Assign a friendly name to this host VM
   config.vm.hostname = "vagrant-devbox"
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
+  # Every Vagrant development environment requires a box.
   config.vm.box = "ubuntu/xenial64"
 
   # Disable automatic box update checking. If you disable this, then
@@ -110,7 +109,7 @@ Vagrant.configure("2") do |config|
     apt-get install -y \
       curl \
       git \
-      language-pack-en \
+      language-pack-UTF-8 \
       make \
       mariadb-client \
       mc \
