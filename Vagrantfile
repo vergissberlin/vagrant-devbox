@@ -10,6 +10,11 @@
 # @license    http://opensource.org/licenses/MIT
 # @link http://blog.scottlowe.org/2015/02/10/using-docker-with-vagrant/
 
+# Requirements
+VAGRANTFILE_API_VERSION = "2"
+VAGRANT_DEFAULT_PROVIDER = "virtualbox"
+Vagrant.require_version ">= 1.6.5"
+
 
 # Plugins
 # vagrant plugin install vagrant-docker-compose
@@ -28,6 +33,8 @@ unless Vagrant.has_plugin?("vagrant-docker-compose")
   puts "Dependencies installed, please try the command again."
   exit
 end
+
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -45,6 +52,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box.
   config.vm.box = "ubuntu/xenial64"
+  config.vm.box_check_update = true
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -55,7 +63,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 2375, host: 2375  # docker
+  config.vm.network "forwarded_port", guest: 80, host: 8090  # docker
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -70,9 +78,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/vagrant_data",
-    owner: "www-data",
-    group: "www-data"
+  config.vm.synced_folder "./data", "/var/data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -86,6 +92,16 @@ Vagrant.configure("2") do |config|
     vb.cpus = 4
     vb.memory = 8192
   end
+
+  config.vm.provider "vmware_fusion" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+    # Customize the amount of memory on the VM:
+    vb.cpus = 4
+    vb.memory = 8192
+  end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -100,36 +116,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "./config/.bashrc", destination: ".bashrc"
   config.vm.provision "file", source: "./config/.bash_aliases", destination: ".bash_aliases"
   config.vm.provision "file", source: "./config/.vimrc", destination: ".vimrc"
+  #config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y \
-      curl \
-      git \
-      language-pack-UTF-8 \
-      make \
-      mariadb-client \
-      mc \
-      python-pip \
-      vim \
-      wget
-
-      update-alternatives --set editor /usr/bin/vim.basic
-
-      . /vagrant/install/bashlight.sh
-      . /vagrant/install/composer.sh
-      . /vagrant/install/docker-compose.sh
-      . /vagrant/config/structure.sh
-      chown -R vagrant:vagrant /home/vagrant/
-  SHELL
+  config.vm.provision "shell", path: "install/provision.sh", privileged: true
 
   # Always use Vagrant's default insecure key
   config.ssh.forward_agent    = true
   config.ssh.insert_key       = true
-
   config.vm.provision :docker
   config.vm.provision :docker_compose
 

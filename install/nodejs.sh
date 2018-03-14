@@ -9,12 +9,17 @@
 # @author     André Lademann <vergissberlin@googlemail.com>
 # @license    http://opensource.org/licenses/MIT
 
-if [ ! -d "~/bashlight" ]; then
-  cd ~
-  git clone https://github.com/vergissberlin/bashlight.git
-  bash ~/bashlight/git-init.sh
-else
-  cd ~/bashlight
-  git checkout master
-  git pull origin master
-fi
+curl -sL https://deb.nodesource.com/setup_9.x | bash -
+apt-get install -y nodejs
+
+
+npm install -g \
+  browserify \
+  eslint \
+  grunt-cli \
+  harp \
+  http-server \
+  less \
+  mocha \
+  n \
+  uglify-js

@@ -111,3 +111,5 @@ fi
 EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
+
+cd /var/data
