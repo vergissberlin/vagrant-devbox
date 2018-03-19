@@ -23,6 +23,11 @@ unless Vagrant.has_plugin?("vagrant-hosts")
   puts "Dependencies installed, please try the command again."
   exit
 end
+unless Vagrant.has_plugin?("vagrant-sshfs")
+  system("vagrant plugin install vagrant-sshfs")
+  puts "Dependencies installed, please try the command again."
+  exit
+end
 unless Vagrant.has_plugin?("vagrant-vbox-snapshot")
   system("vagrant plugin install vagrant-vbox-snapshot")
   puts "Dependencies installed, please try the command again."
@@ -51,9 +56,8 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "vagrant-devbox"
 
   # Every Vagrant development environment requires a box.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "debian/contrib-stretch64"
   config.vm.box_check_update = true
-
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -78,7 +82,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/var/data"
+  config.vm.synced_folder "./data", "/var/data", type: "sshfs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

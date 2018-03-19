@@ -25,7 +25,6 @@ apt-get install -y \
   curl \
   git \
   linux-headers-$(uname -r) \
-  language-pack-UTF-8 \
   make \
   mariadb-client \
   mc \
