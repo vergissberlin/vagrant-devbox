@@ -9,7 +9,6 @@
 # @author     André Lademann <vergissberlin@googlemail.com>
 # @license    http://opensource.org/licenses/MIT
 
-curl -sL https://deb.nodesource.com/setup_9.x | bash -
 apt-get install -y nodejs
 
 
@@ -18,8 +17,11 @@ npm install -g \
   eslint \
   grunt-cli \
   harp \
+  heroku-cli \
   http-server \
   less \
   mocha \
   n \
   uglify-js
+
+n latest

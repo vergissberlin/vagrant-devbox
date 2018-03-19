@@ -36,10 +36,10 @@ apt-get install -y \
 
 
   # Developer packages (remove, if your don't need it)
-  # . /vagrant/install/aws.sh
+  . /vagrant/install/aws.sh
   . /vagrant/install/bashlight.sh
   . /vagrant/install/composer.sh
-  # . /vagrant/install/docker-compose.sh
+  . /vagrant/install/docker.sh
   . /vagrant/install/nodejs.sh
   # . /vagrant/install/virtualbox-guest.sh
 
