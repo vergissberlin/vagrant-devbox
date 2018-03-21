@@ -8,13 +8,12 @@
 # @package    vagrant
 # @author     André Lademann <vergissberlin@googlemail.com>
 # @license    http://opensource.org/licenses/MIT
-# @link http://blog.scottlowe.org/2015/02/10/using-docker-with-vagrant/
+# @link       http://blog.scottlowe.org/2015/02/10/using-docker-with-vagrant/
 
 # Requirements
 VAGRANTFILE_API_VERSION = "2"
 VAGRANT_DEFAULT_PROVIDER = "virtualbox"
 Vagrant.require_version ">= 1.6.5"
-
 
 # Plugins
 # vagrant plugin install vagrant-docker-compose
@@ -120,7 +119,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "./config/.bashrc", destination: ".bashrc"
   config.vm.provision "file", source: "./config/.bash_aliases", destination: ".bash_aliases"
   config.vm.provision "file", source: "./config/.vimrc", destination: ".vimrc"
-  #config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
+  config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
