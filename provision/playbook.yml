@@ -1,0 +1,11 @@
+---
+# main playbook.yml
+- name: Vagrant box provision
+  hosts: all
+  tasks:
+    - include_vars: vars/main.yml
+    - include_tasks: packages.yml
+
+    - name: Set timezone to Europe/Berlin
+      timezone:
+        name: Europe/Berlin
