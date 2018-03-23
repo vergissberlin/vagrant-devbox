@@ -44,14 +44,4 @@ apt-get install -y \
 
 update-alternatives --set editor /usr/bin/vim.basic
 
-# Developer packages (remove, if your don't need it)
-bash /vagrant/install/aws.sh
-bash /vagrant/install/heroku.sh
-bash /vagrant/install/bashlight.sh
-bash /vagrant/install/composer.sh
-bash /vagrant/install/docker.sh
-bash /vagrant/install/nodejs.sh
-# . /vagrant/install/virtualbox-guest.sh
-
-
 chown -R vagrant:vagrant /home/vagrant/

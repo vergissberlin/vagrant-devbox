@@ -22,11 +22,6 @@ unless Vagrant.has_plugin?("vagrant-hosts")
   puts "Dependencies installed, please try the command again."
   exit
 end
-unless Vagrant.has_plugin?("vagrant-sshfs")
-  system("vagrant plugin install vagrant-sshfs")
-  puts "Dependencies installed, please try the command again."
-  exit
-end
 unless Vagrant.has_plugin?("vagrant-vbox-snapshot")
   system("vagrant plugin install vagrant-vbox-snapshot")
   puts "Dependencies installed, please try the command again."
@@ -81,7 +76,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/var/data", type: "sshfs"
+  config.vm.synced_folder "./data", "/var/data" 
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -125,6 +120,12 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", path: "install/provision.sh", privileged: true
+  config.vm.provision "shell", path: "install/bashlight.sh", privileged: true
+  config.vm.provision "shell", path: "install/aws.sh", privileged: true
+  config.vm.provision "shell", path: "install/heroku.sh", privileged: true
+  config.vm.provision "shell", path: "install/nodejs.sh", privileged: true
+  config.vm.provision "shell", path: "install/composer.sh", privileged: true
+  config.vm.provision "shell", path: "install/docker.sh", privileged: true
 
   # Always use Vagrant's default insecure key
   config.ssh.forward_agent    = true
