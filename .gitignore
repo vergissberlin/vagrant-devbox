@@ -1,5 +1,4 @@
 /.vagrant/
 /data/
 *.log
-/data/
 !/data/.keep
