@@ -5,6 +5,7 @@
   tasks:
     - include_vars: vars/main.yml
     - include_tasks: packages.yml
+    - include_tasks: node.yml
 
     - name: Set timezone to Europe/Berlin
       timezone:
