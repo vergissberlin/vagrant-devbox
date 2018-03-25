@@ -1,5 +1,4 @@
 ---
-# file: node.yml
 
 - stat:
     path: /usr/bin/node
@@ -7,18 +6,13 @@
   tags:
     - node
 
-- name: Transfer the script
-  copy: src=../install dest=/root/ mode=0755
-  tags:
-    - node
-
-- name: Execute the script
-  command: sh /root/install/node.sh
+- name: "Node: Execute the installtion script"
+  command: bash /root/files/scripts/node.sh
   when: node.stat.islnk is not defined
   tags:
     - node
 
-- name: "Npm install n"
+- name: "Node: Install node version manager n"
   npm:
     name: n
     global: yes
@@ -26,56 +20,23 @@
   tags:
     - node
 
-- name: "Install node stable"
+- name: "Node: Install node stable"
   command: n stable
   register: node_stable
   tags:
     - node
 
-- name: "Npm install browserify"
-  npm:
-    name: browserify
-    global: yes
-    state: latest
-  tags:
-    - node
-
-- name: "Npm install eslint"
-  npm:
-    name: eslint
-    global: yes
-    state: latest
-  tags:
-    - node
-
-- name: "Npm install grunt-cli"
-  npm:
-    name: grunt-cli
-    global: yes
-    state: latest
-  tags:
-    - node
-
-- name: "Npm install http-server"
-  npm:
-    name: http-server
-    global: yes
-    state: latest
-  tags:
-    - node
-
-- name: "Npm install mocha"
-  npm:
-    name: mocha
-    global: yes
-    state: latest
-  tags:
-    - node
-
-- name: "Npm install uglify-js"
-  npm:
-    name: uglify-js
-    global: yes
-    state: latest
-  tags:
-    - node
+- name: "Node: Install node/js dependencies"
+  npm: name={{item}} global=yes
+  with_items:
+    - bower
+    - browser-sync
+    - browserify
+    - eslint
+    - grunt-cli
+    - gulp
+    - http-server
+    - jasmine
+    - jshint
+    - uglify-js
+    - yo

@@ -27,15 +27,27 @@ packages:
       state: present
     - name: ntpdate
       state: present
+    - name: php-cli
+      state: latest
+    - name: phing
+      state: present
     - name: python-pip
       state: present
+    - name: ruby
+      state: present
+    - name: sassc
+      state: latest
     - name: screen
       state: present
     - name: tmux
+      state: latest
+    - name: traceroute
       state: present
     - name: unzip
       state: present
     - name: vim
+      state: latest
+    - name: virtualenv
       state: present
-    - name: traceroute
+    - name: wget
       state: present

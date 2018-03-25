@@ -3,10 +3,38 @@
 - name: Vagrant box provision
   hosts: all
   tasks:
+
+    - name: "Transfer files"
+      copy: src=files dest=/root/ mode=0644
+
     - include_vars: vars/main.yml
     - include_tasks: packages.yml
+      tags:
+        - packages
+    - include_tasks: git.yml
+      tags:
+        - git
     - include_tasks: node.yml
-
+      tags:
+        - node
+    - include_tasks: python.yml
+      tags:
+        - python
+#    - include_tasks: ruby.yml
+#      tags:
+#        - ruby
+#
+#    - name: "Tools: Install heroku-cli"
+#      command: wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+#      tags:
+#        - tools
+#        - cli
+#    - name: "Tools: Install PHP composer"
+#      command: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#      tags:
+#        - tools
+#        - cli
+#        - php
     - name: Set timezone to Europe/Berlin
       timezone:
         name: Europe/Berlin

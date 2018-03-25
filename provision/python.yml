@@ -1,0 +1,12 @@
+---
+
+- name: "PYTHON: Install global python requirements"
+  pip: name={{item}} state=present
+  with_items:
+    - awscli
+    - docutils
+    - rst2pdf
+    - sphinx
+  tags:
+    - python
+    - cloud

@@ -1,0 +1,27 @@
+---
+
+#- stat:
+#    path: /usr/bin/ruby
+#  register: ruby
+#  tags:
+#    - ruby
+#
+#- name: "Ruby: Transfer the installation script"
+#  copy: src=files/scripts dest=/root/ mode=0755
+#  tags:
+#    - ruby
+#
+#- name: "Ruby: Execute the installtion script"
+#  command: bash /root/scripts/ruby.sh
+#  when: Ruby.stat.islnk is not defined
+#  tags:
+#    - ruby
+#
+
+- name: "Ruby: Install ruby dependencies"
+  sudo: no
+  gem: name={{item}} state=present user_install=no
+  with_items:
+    - rake
+    - sass
+    - compass

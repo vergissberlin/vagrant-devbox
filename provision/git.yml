@@ -1,0 +1,10 @@
+---
+
+- git:
+    repo: 'https://github.com/vergissberlin/bashlight.git'
+    dest: /home/vagrant/bashlight
+    update: yes
+- git:
+    repo: 'https://github.com/vergissberlin/bashlib.git'
+    dest: /home/vagrant/bashlib
+    update: yes

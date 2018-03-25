@@ -92,9 +92,9 @@ Vagrant.configure("2") do |config|
   #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
   # end
 
-  config.vm.provision "file", source: "./config/.bashrc", destination: ".bashrc"
-  config.vm.provision "file", source: "./config/.bash_aliases", destination: ".bash_aliases"
-  config.vm.provision "file", source: "./config/.vimrc", destination: ".vimrc"
+  config.vm.provision "file", source: "./provision/files/config/.bashrc", destination: ".bashrc"
+  config.vm.provision "file", source: "./provision/files/config/.bash_aliases", destination: ".bash_aliases"
+  config.vm.provision "file", source: "./provision/files/config/.vimrc", destination: ".vimrc"
   config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
 
   # Enable provisioning with a shell script. Additional provisioners such as
