@@ -1,14 +1,31 @@
 ---
-
-- stat:
-    path: /usr/bin/node
-  register: node
+- name: "Add NodeJS apt key"
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
   tags:
     - node
 
-- name: "Node: Execute the installtion script"
-  command: bash /root/files/scripts/node.sh
-  when: node.stat.islnk is not defined
+- name: "Add NodeJS 8.x apt deb repository"
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_8.x stretch main"
+    state: present
+    filename: "node-js"
+  tags:
+    - node
+
+- name: "Add NodeJS 8.x apt deb-src repository"
+  apt_repository:
+    repo: "deb-src https://deb.nodesource.com/node_8.x stretch main"
+    state: present
+    filename: "node-js"
+  tags:
+    - node
+
+- name: Install nodejs
+  apt:
+    name: nodejs
+    state: latest
   tags:
     - node
 
@@ -27,16 +44,7 @@
     - node
 
 - name: "Node: Install node/js dependencies"
-  npm: name={{item}} global=yes
-  with_items:
-    - bower
-    - browser-sync
-    - browserify
-    - eslint
-    - grunt-cli
-    - gulp
-    - http-server
-    - jasmine
-    - jshint
-    - uglify-js
-    - yo
+  npm:
+    name: "{{ item.name }}"
+    global: yes
+  with_items: "{{ packages.node | default([]) }}"

@@ -3,6 +3,8 @@ packages:
   os:
     - name: aptitude
       state: present
+    - name: apt-transport-https
+      state: present
     - name: build-essential
       state: present
     - name: curl
@@ -50,4 +52,27 @@ packages:
     - name: virtualenv
       state: present
     - name: wget
+      state: present
+  node:
+    - name: bower
+      state: present
+    - name: browser-sync
+      state: present
+    - name: browserify
+      state: present
+    - name: eslint
+      state: present
+    - name: grunt-cli
+      state: present
+    - name: gulp
+      state: present
+    - name: http-server
+      state: present
+    - name: jasmine
+      state: present
+    - name: jshint
+      state: present
+    - name: uglify-js
+      state: present
+    - name: yo
       state: present
