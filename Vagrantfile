@@ -72,13 +72,13 @@ Vagrant.configure("2") do |config|
     vb.memory = 8192
   end
 
-  config.vm.provider "vmware_fusion" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
+  config.vm.provider "vmware_fusion" do |vm|
+    # Display the vmware GUI when booting the machine
+    # vm.gui = true
+
     # Customize the amount of memory on the VM:
-    vb.cpus = 4
-    vb.memory = 8192
+    vm.vmx["memsize"] = 8192
+    vm.vmx["numvcpus"] = 4
   end
 
   #
@@ -108,6 +108,7 @@ Vagrant.configure("2") do |config|
     ansible.become             = true
     ansible.galaxy_role_file   = "provision/requirements.yml"
     ansible.galaxy_roles_path  = "provision/roles/"
+    ansible.tags = "ruby"
   end
 
   # Always use Vagrant's default insecure key
