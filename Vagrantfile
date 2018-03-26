@@ -106,6 +106,8 @@ Vagrant.configure("2") do |config|
     ansible.compatibility_mode = "auto"
     ansible.playbook           = "provision/playbook.yml"
     ansible.become             = true
+    ansible.galaxy_role_file   = "provision/requirements.yml"
+    ansible.galaxy_roles_path  = "provision/roles/"
   end
 
   # Always use Vagrant's default insecure key

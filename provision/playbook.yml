@@ -7,6 +7,15 @@
       copy: src=files dest=/root/ mode=0644
 
     - include_vars: vars/main.yml
+
+    - name: Apply dev-sec/os-hardening role
+      include_role:
+        name: roles/os-hardening
+      vars:
+        sysctl_overwrite:
+          # ip forwarding is required for access docker containers from outside
+          net.ipv4.ip_forward: 1
+
     - include_tasks: packages.yml
       tags:
         - packages
