@@ -1,10 +1,8 @@
 ---
-
 - name: "Ruby: Install ruby dependencies"
-  gem: name={{item}} state=present
-  with_items:
-    - rake
-    - sass
-    - compass
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ packages.ruby | default([]) }}"
   tags:
     - ruby

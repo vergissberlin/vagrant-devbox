@@ -35,7 +35,7 @@ packages:
       state: present
     - name: python-pip
       state: present
-    - name: ruby
+    - name: ruby-full
       state: present
     - name: sassc
       state: latest
@@ -85,3 +85,10 @@ packages:
       state: present
     - name: sphinx
       state: present
+  ruby:
+    - name: rake
+      state: latest
+    - name: ruby-sass
+      state: latest
+    - name: ruby-compass
+      state: latest
