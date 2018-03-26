@@ -76,3 +76,12 @@ packages:
       state: present
     - name: yo
       state: present
+  python:
+    - name: awscli
+      state: present
+    - name: docutils
+      state: present
+    - name: rst2pdf
+      state: present
+    - name: sphinx
+      state: present
