@@ -108,7 +108,7 @@ Vagrant.configure("2") do |config|
     ansible.become             = true
     ansible.galaxy_role_file   = "provision/requirements.yml"
     ansible.galaxy_roles_path  = "provision/roles/"
-    ansible.tags = "ruby"
+    # ansible.tags               = "ruby"
   end
 
   # Always use Vagrant's default insecure key

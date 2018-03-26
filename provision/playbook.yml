@@ -30,9 +30,9 @@
     - include_tasks: python.yml
       tags:
         - python
-    - include_tasks: ruby.yml
-      tags:
-        - ruby
+#    - include_tasks: ruby.yml
+#      tags:
+#        - ruby
 #
 #    - name: "Tools: Install heroku-cli"
 #      command: wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
