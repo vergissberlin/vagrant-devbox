@@ -9,6 +9,7 @@
 # @author     André Lademann <vergissberlin@googlemail.com>
 # @license    http://opensource.org/licenses/MIT
 # @link       http://blog.scottlowe.org/2015/02/10/using-docker-with-vagrant/
+# @link       https://www.jeffgeerling.com/blogs/jeff-geerling/vagrant-nfs-shared-folders
 
 # Requirements
 VAGRANTFILE_API_VERSION = "2"
@@ -44,6 +45,12 @@ Vagrant.configure("2") do |config|
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true   # docker
 
+  # Samba share
+  config.vm.network "forwarded_port", guest: 137, host: 137, auto_correct: true   # docker
+  config.vm.network "forwarded_port", guest: 138, host: 138, auto_correct: true   # docker
+  config.vm.network "forwarded_port", guest: 139, host: 139, auto_correct: true   # docker
+  config.vm.network "forwarded_port", guest: 445, host: 445, auto_correct: true   # docker
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
@@ -66,7 +73,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
-  #
+
     # Customize the amount of memory on the VM:
     vb.cpus = 4
     vb.memory = 8192

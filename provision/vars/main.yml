@@ -58,21 +58,15 @@ packages:
       state: present
     - name: browser-sync
       state: present
-    - name: browserify
-      state: present
     - name: eslint
       state: present
     - name: grunt-cli
       state: present
     - name: gulp
       state: present
-    - name: http-server
-      state: present
-    - name: jasmine
-      state: present
     - name: jshint
       state: present
-    - name: uglify-js
+    - name: matrix-rain
       state: present
     - name: yo
       state: present
@@ -86,8 +80,6 @@ packages:
     - name: sphinx
       state: present
   ruby:
-    - name: rake
-      state: latest
     - name: ruby-sass
       state: latest
     - name: ruby-compass
