@@ -26,4 +26,7 @@ add-apt-repository \
    stable"
 
 apt-get update
-apt-get install -y docker-ce   
+apt-get install -y docker-ce
+
+# Plugin local-persist
+curl -fsSL https://raw.githubusercontent.com/CWSpear/local-persist/master/scripts/install.sh | bash

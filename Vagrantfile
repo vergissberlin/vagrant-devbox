@@ -16,6 +16,14 @@ VAGRANTFILE_API_VERSION = "2"
 VAGRANT_DEFAULT_PROVIDER = "virtualbox"
 Vagrant.require_version ">= 1.6.5"
 
+# Plugins
+# VirtualBox Guest plugin
+unless Vagrant.has_plugin?("vagrant-vbguest")
+  system("vagrant plugin install vagrant-vbguest")
+  puts "Dependencies installed, please try the command again."
+  exit
+end
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -58,13 +66,14 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
+  config.vm.network "private_network", type: "dhcp"
   config.vm.network "public_network", type: "dhcp"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/var/data"
+  config.vm.synced_folder "./data", "/var/data", type: "nfs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
