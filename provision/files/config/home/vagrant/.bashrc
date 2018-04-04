@@ -114,5 +114,6 @@ export EDITOR VISUAL
 
 cd /var/data
 
-export PS_INFO=vagrant
+# PS1 Info
+export PS_INFO=dev
 export PS_INFO_BRAND=info
