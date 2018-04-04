@@ -1,3 +1,11 @@
+# vagrant-devbox
+#
+# LICENSE:    MIT
+#
+# @project    vagrant-devbox
+# @package    installation
+# @author     André Lademann <vergissberlin@googlemail.com>
+# @license    http://opensource.org/licenses/MIT
 
 # some more ls aliases
 alias ll='ls -l'

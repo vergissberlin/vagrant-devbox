@@ -113,3 +113,6 @@ VISUAL=$EDITOR
 export EDITOR VISUAL
 
 cd /var/data
+
+export PS_INFO=vagrant
+export PS_INFO_BRAND=info

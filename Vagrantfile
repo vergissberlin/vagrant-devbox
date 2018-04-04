@@ -51,13 +51,15 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true   # docker
+  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
   # Samba share
-  config.vm.network "forwarded_port", guest: 137, host: 137, auto_correct: true   # docker
-  config.vm.network "forwarded_port", guest: 138, host: 138, auto_correct: true   # docker
-  config.vm.network "forwarded_port", guest: 139, host: 139, auto_correct: true   # docker
-  config.vm.network "forwarded_port", guest: 445, host: 445, auto_correct: true   # docker
+  if Vagrant::Util::Platform.windows? then
+    config.vm.network "forwarded_port", guest: 137, host: 137, auto_correct: true
+    config.vm.network "forwarded_port", guest: 138, host: 138, auto_correct: true
+    config.vm.network "forwarded_port", guest: 139, host: 139, auto_correct: true
+    config.vm.network "forwarded_port", guest: 445, host: 445, auto_correct: true
+  end
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -73,13 +75,18 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/var/data", type: "nfs"
+  if Vagrant::Util::Platform.windows? then
+    config.vm.synced_folder "./data", "/var/data", type: "samba"
+  else
+    config.vm.synced_folder "./data", "/home/vagrant/dev", type: "nfs"
+  end
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
+
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
 
@@ -107,11 +114,22 @@ Vagrant.configure("2") do |config|
   # config.push.define "atlas" do |push|
   #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
   # end
+  config.vm.provision "file", source: "./provision/files/config/home/vagrant/.bashrc", destination: ".bashrc"
+  config.vm.provision "file", source: "./provision/files/config/home/vagrant/.bash_aliases", destination: ".bash_aliases"
+  config.vm.provision "file", source: "./provision/files/config/home/vagrant/.vimrc", destination: ".vimrc"
 
-  config.vm.provision "file", source: "./provision/files/config/.bashrc", destination: ".bashrc"
-  config.vm.provision "file", source: "./provision/files/config/.bash_aliases", destination: ".bash_aliases"
-  config.vm.provision "file", source: "./provision/files/config/.vimrc", destination: ".vimrc"
-  config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
+  if Vagrant::Util::Platform.windows? then
+      config.vm.provision "file", source: ENV["USERPROFILE"] +"/.ssh", destination: ".ssh"
+  else
+      config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
+  end
+
+
+  # @link http://razius.com/articles/vagrant-and-ssh-agent-forwarding/
+  config.vm.provision :shell do |shell|
+      shell.inline = "touch $1 && chmod 0440 $1 && echo $2 > $1"
+      shell.args = %q{/etc/sudoers.d/root_ssh_agent "Defaults env_keep += \"SSH_AUTH_SOCK\""}
+  end
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
@@ -128,8 +146,8 @@ Vagrant.configure("2") do |config|
   end
 
   # Always use Vagrant's default insecure key
-  config.ssh.forward_agent    = true
-  config.ssh.insert_key       = true
+  #config.ssh.forward_agent    = true
+  #config.ssh.insert_key       = true
   config.vm.provision :docker
   config.vm.provision :docker_compose
 
