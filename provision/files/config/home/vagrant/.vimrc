@@ -1,6 +1,5 @@
 syntax on
 syntax enable
-colorscheme monokai
 
 set nocompatible
 set number

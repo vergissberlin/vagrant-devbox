@@ -23,6 +23,11 @@ unless Vagrant.has_plugin?("vagrant-vbguest")
   puts "Dependencies installed, please try the command again."
   exit
 end
+unless Vagrant.has_plugin?("vagrant-disksize")
+  system("vagrant plugin install vagrant-disksize")
+  puts "Dependencies installed, please try the command again."
+  exit
+end
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -38,6 +43,8 @@ Vagrant.configure("2") do |config|
 
   # Assign a friendly name to this host VM
   config.vm.hostname = "vagrant-devbox"
+  config.disksize.size = "20GB"
+
 
   # Every Vagrant development environment requires a box.
   config.vm.box = "debian/contrib-stretch64"
@@ -78,7 +85,8 @@ Vagrant.configure("2") do |config|
   if Vagrant::Util::Platform.windows? then
     config.vm.synced_folder "./data", "/var/data", type: "samba"
   else
-    config.vm.synced_folder "./data", "/home/vagrant/dev", type: "nfs"
+    # config.vm.synced_folder "./data", "/home/vagrant/dev", type: "nfs"
+    # 9config.vm.synced_folder "./data", "/home/vagrant/dev", type: "virtualbox"
   end
 
   # Provider-specific configuration so you can fine-tune various
