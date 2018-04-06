@@ -7,6 +7,14 @@
 3. Virtualbox (https://www.virtualbox.org/)
 4. Vagrant (https://www.vagrantup.com/)
 
+### Vagrant plugins
+
+```
+vagrant plugin install vagrant-disksize
+vagrant plugin install vagrant-sshfs
+vagrant plugin install vagrant-vbguest
+```
+
 ## Usage
 
 ### Installation
@@ -31,3 +39,11 @@ vagrant ssh
 ```
 /data
 ```
+
+
+#### SSHFS
+
+##### Dependencies
+
+- Fuse
+- SSHFS

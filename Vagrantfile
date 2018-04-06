@@ -1,4 +1,5 @@
-#!/bin/bash
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
 # vagrant-devbox
 #
@@ -18,19 +19,21 @@ Vagrant.require_version ">= 1.6.5"
 
 # Plugins
 # VirtualBox Guest plugin
-unless Vagrant.has_plugin?("vagrant-vbguest")
-  system("vagrant plugin install vagrant-vbguest")
-  puts "Dependencies installed, please try the command again."
-  exit
-end
 unless Vagrant.has_plugin?("vagrant-disksize")
   system("vagrant plugin install vagrant-disksize")
   puts "Dependencies installed, please try the command again."
   exit
 end
-
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+unless Vagrant.has_plugin?("vagrant-sshfs")
+  system("vagrant plugin install vagrant-sshfs")
+  puts "Dependencies installed, please try the command again."
+  exit
+end
+unless Vagrant.has_plugin?("vagrant-vbguest")
+  system("vagrant plugin install vagrant-vbguest")
+  puts "Dependencies installed, please try the command again."
+  exit
+end
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -41,8 +44,9 @@ Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  # Assign a friendly name to this host VM
-  config.vm.hostname = "vagrant-devbox"
+  # Assign a friendly name to this host VM and box
+  config.vm.hostname   = "vagrant-devbox"
+  config.vm.box        = "vagrant-devbox"
   config.disksize.size = "20GB"
 
 
@@ -59,7 +63,7 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
-  config.vm.network :forwarded_port, id: 'ssh', guest:22, host: 2222
+  config.vm.network :forwarded_port, guest: 22, host: 2222, auto_correct: true, id: 'ssh'
 
   # Samba share
   if Vagrant::Util::Platform.windows? then
@@ -77,15 +81,16 @@ Vagrant.configure("2") do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network.
   config.vm.network "private_network", type: "dhcp"
-  config.vm.network "public_network", type: "dhcp"
+  config.vm.network "public_network",  type: "dhcp"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   if Vagrant::Util::Platform.windows? then
-    config.vm.synced_folder "./data", "/home/vagrant/data", type: "samba"
+    config.vm.synced_folder "./data", "/var/data" , type: "sshfs"
   else
+    config.vm.synced_folder "./data", "/var/data" , type: "sshfs"
     # config.vm.synced_folder "./data", "/home/vagrant/dev", nfs: true, nfs_version: 4, nfs_udp: false
     # config.vm.synced_folder "./data", "/home/vagrant/dev", type: "virtualbox"
     # config.vm.synced_folder "./data", "/home/vagrant/dev",
@@ -98,9 +103,9 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
+    vb.name = "vagrant-devbox"
+    # Display the VirtualBox GUI when booting the machine
+    # vb.gui = true
 
     # Customize the amount of memory on the VM:
     vb.cpus = 4
@@ -108,6 +113,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "vmware_fusion" do |vm|
+    vm.name = "vagrant-devbox"
+
     # Display the vmware GUI when booting the machine
     # vm.gui = true
 
@@ -134,13 +141,6 @@ Vagrant.configure("2") do |config|
       config.vm.provision "file", source: ENV["USERPROFILE"] +"/.ssh", destination: ".ssh"
   else
       config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
-  end
-
-
-  # @link http://razius.com/articles/vagrant-and-ssh-agent-forwarding/
-  config.vm.provision :shell do |shell|
-      shell.inline = "touch $1 && chmod 0440 $1 && echo $2 > $1"
-      shell.args = %q{/etc/sudoers.d/root_ssh_agent "Defaults env_keep += \"SSH_AUTH_SOCK\""}
   end
 
   # Enable provisioning with a shell script. Additional provisioners such as
