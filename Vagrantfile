@@ -58,7 +58,8 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+  config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
+  config.vm.network :forwarded_port, id: 'ssh', guest:22, host: 2222
 
   # Samba share
   if Vagrant::Util::Platform.windows? then
@@ -83,10 +84,13 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   if Vagrant::Util::Platform.windows? then
-    config.vm.synced_folder "./data", "/var/data", type: "samba"
+    config.vm.synced_folder "./data", "/home/vagrant/data", type: "samba"
   else
-    # config.vm.synced_folder "./data", "/home/vagrant/dev", type: "nfs"
-    # 9config.vm.synced_folder "./data", "/home/vagrant/dev", type: "virtualbox"
+    # config.vm.synced_folder "./data", "/home/vagrant/dev", nfs: true, nfs_version: 4, nfs_udp: false
+    # config.vm.synced_folder "./data", "/home/vagrant/dev", type: "virtualbox"
+    # config.vm.synced_folder "./data", "/home/vagrant/dev",
+    #  type: "rsync",
+    #  rsync__exclude: "node_modules"
   end
 
   # Provider-specific configuration so you can fine-tune various
