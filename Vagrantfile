@@ -91,11 +91,11 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./data", "/var/data" , type: "sshfs"
   else
     config.vm.synced_folder "./data", "/var/data" ,
-      type: "sshfs",
-      ssh_opts_append: "-o Compression=yes -o CompressionLevel=5",
-      sshfs_opts_append: "-o auto_cache -o cache_timeout=115200",
-      reverse: true,
-      disabled: false
+      type: "sshfs"
+      #ssh_opts_append: "-o Compression=yes -o CompressionLevel=5",
+      #sshfs_opts_append: "-o auto_cache -o cache_timeout=115200",
+      #reverse: true,
+      #disabled: false
     # config.vm.synced_folder "./data", "/home/vagrant/dev", nfs: true, nfs_version: 4, nfs_udp: false
     # config.vm.synced_folder "./data", "/home/vagrant/dev", type: "virtualbox"
     # config.vm.synced_folder "./data", "/home/vagrant/dev",
