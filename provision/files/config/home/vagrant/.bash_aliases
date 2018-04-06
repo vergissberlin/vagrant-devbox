@@ -23,3 +23,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# Docker
+if [ -x /usr/bin/docker ]; then
+    alias do='docker'
+fi
+if [ -x /usr/local/bin/docker-compose ]; then
+    alias dc='docker-compose'
+fi
