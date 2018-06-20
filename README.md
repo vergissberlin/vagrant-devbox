@@ -17,55 +17,57 @@ vagrant plugin install vagrant-vbguest
 ```
 
 ## Preinstalled packages
-
-## OS
-- aptitude
-- apt-transport-https
-- build-essential
-- curl
-- dnsutils
-- figlet
-- git
-- htop
-- iotop
-- mc
-- make
-- mariadb-client
-- net-tools
-- ntp
-- ntpdate
-- php-cli
-- phing
-- python-pip
-- ruby-full
-- sassc
-- screen
-- tmux
-- traceroute
-- unzip
-- vim
-- virtualenv
-- wget
-
-### NodeJS
-- bower
-- browser-sync
-- eslint
-- grunt-cli
-- gulp
-- jshint
-- matrix-rain
-- yo
-
-### Python
-- awscli
-- docutils
-- rst2pdf
-- sphinx
-
-### Ruby
-- ruby-sass
-- ruby-compass
+<table>
+    <tr>
+        <th>OS</th>
+        <th>NodeJS</th>
+        <th>Python</th>
+        <th>Ruby</th>
+    </tr>
+    <tr valign="top">
+        <td>aptitude
+            <br>apt-transport-https
+            <br>build-essential
+            <br>curl
+            <br>dnsutils
+            <br>figlet
+            <br>git
+            <br>htop
+            <br>iotop
+            <br>mc
+            <br>make
+            <br>mariadb-client
+            <br>net-tools
+            <br>ntp
+            <br>ntpdate
+            <br>php-cli
+            <br>phing
+            <br>python-pip
+            <br>ruby-full
+            <br>sassc
+            <br>screen
+            <br>tmux
+            <br>traceroute
+            <br>unzip
+            <br>vim
+            <br>virtualenv
+            <br>wget</td>
+        <td>bower
+            <br>browser-sync
+            <br>eslint
+            <br>grunt-cli
+            <br>gulp
+            <br>jshint
+            <br>matrix-rain
+            <br>yo</td>
+        <td>awscli
+            <br>docutils
+            <br>rst2pdf
+            <br>sphinx</td>
+        <td>ruby-sass
+            <br>ruby-compass</td>
+    </tr>
+</table>
 
 ## Usage
 
