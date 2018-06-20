@@ -1,0 +1,13 @@
+---
+- name: Git checkout bashlight
+  git:
+    repo: https://github.com/vergissberlin/bashlight.git
+    dest: /home/vagrant/bashlight
+    update: yes
+  become: false
+- name: Git checkout bashlib
+  git:
+    repo: https://github.com/vergissberlin/bashlib.git
+    dest: /home/vagrant/bashlib
+    update: yes
+  become: false
