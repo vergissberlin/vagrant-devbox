@@ -88,9 +88,9 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   if Vagrant::Util::Platform.windows? then
-    config.vm.synced_folder "./data", "/var/data" , type: "sshfs"
+    config.vm.synced_folder "./data", "/var/data" 
   else
-  #  config.vm.synced_folder "./data", "/var/data", type: "sshfs"
+    config.vm.synced_folder "./data", "/var/data"
       #ssh_opts_append: "-o Compression=yes -o CompressionLevel=5",
       #sshfs_opts_append: "-o auto_cache -o cache_timeout=115200",
       #reverse: true,
