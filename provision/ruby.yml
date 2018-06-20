@@ -1,0 +1,8 @@
+---
+- name: "Ruby: Install ruby dependencies"
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ packages.ruby | default([]) }}"
+  tags:
+    - ruby

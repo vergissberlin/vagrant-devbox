@@ -111,3 +111,9 @@ fi
 EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
+
+cd /var/data
+
+# PS1 Info
+export PS_INFO=devbox
+export PS_INFO_BRAND=info

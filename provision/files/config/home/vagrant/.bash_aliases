@@ -1,3 +1,11 @@
+# vagrant-devbox
+#
+# LICENSE:    MIT
+#
+# @project    vagrant-devbox
+# @package    installation
+# @author     André Lademann <vergissberlin@googlemail.com>
+# @license    http://opensource.org/licenses/MIT
 
 # some more ls aliases
 alias ll='ls -l'
@@ -14,4 +22,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+fi
+
+# Docker
+if [ -x /usr/bin/docker ]; then
+    alias do='docker'
+fi
+if [ -x /usr/local/bin/docker-compose ]; then
+    alias dc='docker-compose'
 fi

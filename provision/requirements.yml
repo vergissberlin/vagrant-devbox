@@ -1,0 +1,12 @@
+---
+- src: git+https://github.com/dev-sec/ansible-os-hardening.git
+  version: master
+  name: os-hardening
+
+- src: git+https://github.com/dev-sec/ansible-ssh-hardening.git
+  version: master
+  name: ssh-hardening
+
+- src: git+https://github.com/geerlingguy/ansible-role-samba.git
+  version: master
+  name: samba
