@@ -1,10 +1,6 @@
-/*
 *.log
 *.retry
+/.vagrant/
+/data/
 !/data/.keep
-!/provision/
 /provision/roles/
-!/provision/roles/.keep
-!/.gitignore
-!/README.md
-!/Vagrantfile
