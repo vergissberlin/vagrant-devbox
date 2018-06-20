@@ -16,6 +16,57 @@ vagrant plugin install vagrant-disksize
 vagrant plugin install vagrant-vbguest
 ```
 
+## Preinstalled packages
+
+## OS
+- aptitude
+- apt-transport-https
+- build-essential
+- curl
+- dnsutils
+- figlet
+- git
+- htop
+- iotop
+- mc
+- make
+- mariadb-client
+- net-tools
+- ntp
+- ntpdate
+- php-cli
+- phing
+- python-pip
+- ruby-full
+- sassc
+- screen
+- tmux
+- traceroute
+- unzip
+- vim
+- virtualenv
+- wget
+
+### NodeJS
+- bower
+- browser-sync
+- eslint
+- grunt-cli
+- gulp
+- jshint
+- matrix-rain
+- yo
+
+### Python
+- awscli
+- docutils
+- rst2pdf
+- sphinx
+
+### Ruby
+- ruby-sass
+- ruby-compass
+
 ## Usage
 
 ### Installation
