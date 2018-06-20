@@ -90,8 +90,7 @@ Vagrant.configure("2") do |config|
   if Vagrant::Util::Platform.windows? then
     config.vm.synced_folder "./data", "/var/data" , type: "sshfs"
   else
-    config.vm.synced_folder "./data", "/var/data" ,
-      type: "sshfs"
+  #  config.vm.synced_folder "./data", "/var/data", type: "sshfs"
       #ssh_opts_append: "-o Compression=yes -o CompressionLevel=5",
       #sshfs_opts_append: "-o auto_cache -o cache_timeout=115200",
       #reverse: true,
