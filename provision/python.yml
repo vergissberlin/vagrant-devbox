@@ -1,0 +1,9 @@
+---
+- name: "PYTHON: Install global python requirements"
+  pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ packages.python | default([]) }}"
+  tags:
+    - python
+    - cloud

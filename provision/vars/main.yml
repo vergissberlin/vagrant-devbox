@@ -1,0 +1,86 @@
+---
+packages:
+  os:
+    - name: aptitude
+      state: present
+    - name: apt-transport-https
+      state: present
+    - name: build-essential
+      state: present
+    - name: curl
+      state: present
+    - name: dnsutils
+      state: present
+    - name: git
+      state: present
+    - name: htop
+      state: present
+    - name: iotop
+      state: present
+    - name: mc
+      state: present
+    - name: make
+      state: present
+    - name: mariadb-client
+      state: present
+    - name: net-tools
+      state: present
+    - name: ntp
+      state: present
+    - name: ntpdate
+      state: present
+    - name: php-cli
+      state: latest
+    - name: phing
+      state: present
+    - name: python-pip
+      state: present
+    - name: ruby-full
+      state: present
+    - name: sassc
+      state: latest
+    - name: screen
+      state: present
+    - name: tmux
+      state: latest
+    - name: traceroute
+      state: present
+    - name: unzip
+      state: present
+    - name: vim
+      state: latest
+    - name: virtualenv
+      state: present
+    - name: wget
+      state: present
+  node:
+    - name: bower
+      state: present
+    - name: browser-sync
+      state: present
+    - name: eslint
+      state: present
+    - name: grunt-cli
+      state: present
+    - name: gulp
+      state: present
+    - name: jshint
+      state: present
+    - name: matrix-rain
+      state: present
+    - name: yo
+      state: present
+  python:
+    - name: awscli
+      state: present
+    - name: docutils
+      state: present
+    - name: rst2pdf
+      state: present
+    - name: sphinx
+      state: present
+  ruby:
+    - name: ruby-sass
+      state: latest
+    - name: ruby-compass
+      state: latest
