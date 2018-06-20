@@ -142,7 +142,7 @@ Vagrant.configure("2") do |config|
     # ansible.tags               = "ruby"
   end
 
-  config.ssh.forward_agent    = false
+  config.ssh.forward_agent    = true
   config.ssh.insert_key       = true
   config.vm.provision :docker
   config.vm.provision :docker_compose
