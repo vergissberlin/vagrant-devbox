@@ -12,7 +12,7 @@
 if [ ! -d "~/bashlight" ]; then
   cd ~
   git clone https://github.com/vergissberlin/bashlight.git
-  bash ~/bashlight/git-init.sh
+  bash ~/bashlight/install.bash
 else
   cd ~/bashlight
   git checkout master
