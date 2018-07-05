@@ -74,7 +74,7 @@ vagrant plugin install vagrant-vbguest
 ### Installation
 
 ```
-git clone https://git.netresearch.de/tools/vagrant-devbox/
+git clone https://github.com/netresearch/vagrant-devbox
 cd vagrant-devbox
 vagrant up
 
