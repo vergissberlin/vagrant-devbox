@@ -5,7 +5,7 @@
 ## Dependencies
 
 1. Git
-2. Ruby (https://www.ruby-lang.org/de/documentation/installation/)
+2. Ruby > 2.3 (https://www.ruby-lang.org/de/documentation/installation/)
 3. VirtualBox (https://www.virtualbox.org/)
 4. Vagrant (https://www.vagrantup.com/)
 
